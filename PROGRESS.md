@@ -12,14 +12,15 @@ Full plan: `~/.claude/plans/project-data-mining-nested-truffle.md`
 
 ## Current stage
 
-🚦 **Phase 1 — premise test** (gate: 4 Oct). Code written and unit-tested; running on real data.
+✅ **Premise test PASSED on 30 Sep** (4 days early) → submit this topic on 5 Oct.
+Next: C does EDA; A extends the pipeline to full windows; B adds Algorithm 2 (market-specific θ).
 
 ## Timeline
 
 | Phase | Dates | Owner | Status |
 |---|---|---|---|
 | 0 Setup: scaffold, read paper §5.1, roles, Drive, ask TA | 30 Sep – 1 Oct | all | 🟡 scaffold done |
-| 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | A+B (C: EDA, backup topic) | 🟡 running |
+| 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | A+B (C: EDA, backup topic) | ✅ passed 30 Sep |
 | 📌 Submit topic + members | **5 Oct** | all | ⬜ |
 | 2 Full pipeline Nov–Dec 2024 + May–Jun 2025 | 5 – 10 Oct | A, B, C | ⬜ |
 | 3 Evaluation: vs paper Fig. 7 · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ⬜ |
@@ -45,6 +46,29 @@ uv run python 01_extract.py
 uv run python 02_alg1.py
 ```
 
+### Result (30 Sep) — ✅ GO
+
+| | Dec 1–7 2024 (peak) | Jun 1–7 2025 (quiet) |
+|---|---|---|
+| matched trades kept (lead-in + week) | 9,345,954 | 6,194,635 |
+| taker-summary rows dropped | 7,867,942 | 4,359,293 |
+| unmapped tokens / self-trades | 0 / 0 | 0 / 0 |
+| target-week share volume | 692.9 M | 389.8 M |
+| wallets | 334,362 | 295,526 |
+| iterations to converge (paper: 12) | 10 | 11 |
+| vol-weighted score x0 → final (must be equal, paper Prop. 2) | 0.7877 → 0.7877 | 0.5848 → 0.5848 |
+| **flagged at θ = 0.9** | **61.8 %** (paper ≈ 60 %) | **0.35 %** (paper < 5 %) |
+| θ = 0.7 / 0.8 / 0.95 / 0.99 | 76.5 / 70.9 / 59.8 / 55.1 % | 20.5 / 6.9 / 0.16 / 0.12 % |
+
+- Wash is spread over 659 of 2,307 markets; the largest single market is 7.2 % of flagged
+  volume. Top markets are sports long-shots (e.g. Blackhawks Stanley Cup 100 % flagged) →
+  `results/dec2024_top_wash_markets.csv`.
+- ⚠️ **"Will Donald Trump be inaugurated?" is 89 % flagged** by our fixed-θ run, but the paper's
+  Algorithm 2 flags *nothing* there (no θ passes its spillover test). Likely a mix of fixed θ vs
+  market-specific θ and our 1-month lead-in inflating closures on long-lived markets →
+  **implement Algorithm 2 in phase 2** and re-check this market. Good Q&A material either way.
+- Runtime: ~15 s for both windows on 32 threads (DuckDB window functions, no Python loops).
+
 ### Decisions taken (don't silently reverse)
 - **Spec source:** paper PDF (public copy, gamblingharm.org), §5.1 Algorithm 1 and §6.
   Volume = **share** volume; buy/buy of N Yes + N No counts N, not 2N.
@@ -60,6 +84,7 @@ uv run python 02_alg1.py
   so querying over HTTP can't skip row groups by date.
 
 ## Remaining
-- [ ] Run premise test, record numbers here
 - [ ] Ask TA: report length/language, video length, AI log, live presentation in week 14?
-- [ ] C: EDA on the two weeks + one backup topic from `standout-da-finance-2569.md`
+- [ ] C: EDA on the two weeks (backup topic no longer needed)
+- [ ] B: Algorithm 2 (θ̲ = 0.8, θ̄ = 0.99, Y = 0.1, ζ = 0.001) + re-check the Trump-inauguration market
+- [ ] A: extend to full Nov–Dec 2024 + May–Jun 2025 weekly series; sanity-check positions vs `user_position`
