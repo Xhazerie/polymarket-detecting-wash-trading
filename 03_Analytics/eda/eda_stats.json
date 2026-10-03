@@ -1,0 +1,30 @@
+{
+  "dec2024": {
+    "trades": 1635178,
+    "wallets": 104186,
+    "markets": 2307,
+    "share_volume_M": 692.882130919304,
+    "usdc_volume_M": 182.68252273802722,
+    "median_trade_shares": 46,
+    "usdc_per_share": 0.26365598791766676,
+    "daily_volume_M_target_mean": 98.98316155990425,
+    "daily_volume_M_leadin_mean": 115.53664951882396,
+    "pct_markets_opened_before_leadin": 42.17598612917208,
+    "pct_volume_in_markets_opened_before_leadin": 69.71440877952907,
+    "markets_with_name": 2307
+  },
+  "jun2025": {
+    "trades": 1147205,
+    "wallets": 87130,
+    "markets": 3918,
+    "share_volume_M": 389.84004783126875,
+    "usdc_volume_M": 169.30303867179325,
+    "median_trade_shares": 36.906,
+    "usdc_per_share": 0.4342884719352161,
+    "daily_volume_M_target_mean": 55.69143540446628,
+    "daily_volume_M_leadin_mean": 43.103322284474864,
+    "pct_markets_opened_before_leadin": 35.37519142419602,
+    "pct_volume_in_markets_opened_before_leadin": 52.64099326472467,
+    "markets_with_name": 3898
+  }
+}

@@ -83,8 +83,25 @@ uv run python 02_alg1.py
 - Raw files are downloaded once to `data/raw/` (gitignored); timestamps are strings,
   so querying over HTTP can't skip row groups by date.
 
+## Group plan document (30 Sep)
+- `plan/group_plan.pdf` (25 pp, Thai) — plan + content + premise-test results, for the group meeting
+  before the 5 Oct topic submission. Charts come from `plan/make_figures.py` (reads `premise_test/results/`).
+- Rebuild: `uv run python plan/make_figures.py` then
+  `cd plan && latexmk -xelatex -outdir=build group_plan.tex && cp build/group_plan.pdf .`
+- `plan/meeting_agenda.md` — short agenda (data state · roles · method) with the decisions to make.
+- After the meeting: fill in the A/B/C names (§16) and TA's answers (§4), then rebuild.
+
 ## Remaining
 - [ ] Ask TA: report length/language, video length, AI log, live presentation in week 14?
-- [ ] C: EDA on the two weeks (backup topic no longer needed)
+- [ ] C: EDA round 1 on the two weeks in `data/interim/` → findings to A/B by **4 Oct**;
+      round 2 on the full range + flagged vs unflagged wallets by **10 Oct** (backup topic no longer needed)
+      - 🟡 3 Oct: `03_Analytics/eda/eda_round1.ipynb` — sections 1 (overview) + 2 (daily volume) + 6a done;
+        sections 3 (degree), 4 (categories), 5 (price/size), 6b (top old markets) for C to write.
+        Findings so far in `03_Analytics/eda/findings.md`:
+        **70 % of Dec target-week volume (53 % Jun) is in markets opened before the lead-in** →
+        filtering by market age would drop most volume, extending the lead-in looks better (A to decide);
+        "39 % unnamed markets" is whole-table only — our windows are ~100 % named;
+        `market_data` has no category column (categorise by keywords);
+        US-election results night (6 Nov 2024, 532 M shares) sits inside the Dec lead-in.
 - [ ] B: Algorithm 2 (θ̲ = 0.8, θ̄ = 0.99, Y = 0.1, ζ = 0.001) + re-check the Trump-inauguration market
 - [ ] A: extend to full Nov–Dec 2024 + May–Jun 2025 weekly series; sanity-check positions vs `user_position`
