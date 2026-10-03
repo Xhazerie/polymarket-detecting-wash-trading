@@ -13,7 +13,9 @@ Full plan: `~/.claude/plans/project-data-mining-nested-truffle.md`
 ## Current stage
 
 ✅ **Premise test PASSED on 30 Sep** (4 days early) → submit this topic on 5 Oct.
-Next: C does EDA; A extends the pipeline to full windows; B adds Algorithm 2 (market-specific θ).
+✅ **EDA round 1 done on 3 Oct** (`03_Analytics/eda/`, findings → A/B in `findings.md`).
+Next: A extends the pipeline (lead-in → 6 months suggested) to full windows; B adds Algorithm 2 (market-specific θ)
+and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
 
 ## Timeline
 
@@ -64,8 +66,8 @@ uv run python 02_alg1.py
   volume. Top markets are sports long-shots (e.g. Blackhawks Stanley Cup 100 % flagged) →
   `results/dec2024_top_wash_markets.csv`.
 - ⚠️ **"Will Donald Trump be inaugurated?" is 89 % flagged** by our fixed-θ run, but the paper's
-  Algorithm 2 flags *nothing* there (no θ passes its spillover test). Likely a mix of fixed θ vs
-  market-specific θ and our 1-month lead-in inflating closures on long-lived markets →
+  Algorithm 2 flags *nothing* there (no θ passes its spillover test). Likely fixed θ vs
+  market-specific θ (EDA 3 Oct: the market opened inside our lead-in, so the lead-in is *not* the cause) →
   **implement Algorithm 2 in phase 2** and re-check this market. Good Q&A material either way.
 - Runtime: ~15 s for both windows on 32 threads (DuckDB window functions, no Python loops).
 
@@ -95,13 +97,16 @@ uv run python 02_alg1.py
 - [ ] Ask TA: report length/language, video length, AI log, live presentation in week 14?
 - [ ] C: EDA round 1 on the two weeks in `data/interim/` → findings to A/B by **4 Oct**;
       round 2 on the full range + flagged vs unflagged wallets by **10 Oct** (backup topic no longer needed)
-      - 🟡 3 Oct: `03_Analytics/eda/eda_round1.ipynb` — sections 1 (overview) + 2 (daily volume) + 6a done;
-        sections 3 (degree), 4 (categories), 5 (price/size), 6b (top old markets) for C to write.
-        Findings so far in `03_Analytics/eda/findings.md`:
-        **70 % of Dec target-week volume (53 % Jun) is in markets opened before the lead-in** →
-        filtering by market age would drop most volume, extending the lead-in looks better (A to decide);
-        "39 % unnamed markets" is whole-table only — our windows are ~100 % named;
-        `market_data` has no category column (categorise by keywords);
-        US-election results night (6 Nov 2024, 532 M shares) sits inside the Dec lead-in.
+      - ✅ 3 Oct: **EDA round 1 complete** — `03_Analytics/eda/eda_round1.ipynb` (60 cells, every code cell has
+        Thai explanation before + interpretation after; runs clean in < 1 min), 6 figures in `eda/figures/`,
+        72 numbers in `eda_stats.json`, full write-up for A/B in `eda/findings.md`. Key results (Dec vs Jun):
+        - vol from wallets with top-2 partner share ≥ 0.9: **38.2 % vs 2.7 %**; top-1 share ≥ 0.8: 19.5 % vs 1.5 %;
+          7,036 Dec wallets split ~50/50 between two partners (chain/ring pattern) → spot-check set for B
+        - Sports **57 % vs 16 %** of volume (keyword categories, Other 3.7 % / 5.6 %)
+        - volume at price < 0.02: **62.6 % vs 25.2 %**; 72,855 trades of exactly 96 shares at ~0.99 (Jun: 463)
+        - lead-in coverage: 1 m 30 % → 3 m 66 % → **6 m 96 %** of Dec volume with full market history → A: extend lead-in
+        - ⚠️ **Trump-inauguration market opened 1 Nov 22:45 UTC, inside the lead-in** → its 89 % flag is *not*
+          a window-edge artefact; B must check it with Algorithm 2
+      - Round 2 (10 Oct) needs per-wallet/per-trade flags saved by B (results/ is market-level only)
 - [ ] B: Algorithm 2 (θ̲ = 0.8, θ̄ = 0.99, Y = 0.1, ζ = 0.001) + re-check the Trump-inauguration market
 - [ ] A: extend to full Nov–Dec 2024 + May–Jun 2025 weekly series; sanity-check positions vs `user_position`
