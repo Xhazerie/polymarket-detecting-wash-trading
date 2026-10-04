@@ -1,4 +1,4 @@
-"""Step 1 (person A): raw fills -> one clean row per matched trade.
+"""Step 1 (data pipeline; role A takes over in phase 2): raw fills -> one clean row per matched trade.
 
 Why this is the hard part of pre-processing:
 - Every on-chain fill is logged from the *maker's* point of view. The row's

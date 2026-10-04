@@ -22,7 +22,7 @@ and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
 | Phase | Dates | Owner | Status |
 |---|---|---|---|
 | 0 Setup: scaffold, read paper §5.1, roles, Drive, ask TA | 30 Sep – 1 Oct | all | 🟡 scaffold done |
-| 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | A+B (C: EDA, backup topic) | ✅ passed 30 Sep |
+| 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | done during planning, before roles were split | ✅ passed 30 Sep |
 | 📌 Submit topic + members | **5 Oct** | all | ⬜ |
 | 2 Full pipeline Nov–Dec 2024 + May–Jun 2025 | 5 – 10 Oct | A, B, C | ⬜ |
 | 3 Evaluation: vs paper Fig. 7 · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ⬜ |
@@ -37,8 +37,8 @@ Cut order if late: Oct-2025 window → Isolation Forest. Never cut: Algorithm 1 
 Rule: **GO if Dec-2024 week flagged ≥ 30% and Jun-2025 week ≤ 10%** of share volume, at θ = 0.9.
 
 - `04_Evaluation/premise_test/config.py` — windows, paper parameters, go rule
-- `01_extract.py` — raw fills → one row per matched trade (A)
-- `02_alg1.py` — closure flags (SQL) → x0 → iterate x = (x0 + Bx)/2 → flag (B)
+- `01_extract.py` — raw fills → one row per matched trade (role A takes over in phase 2)
+- `02_alg1.py` — closure flags (SQL) → x0 → iterate x = (x0 + Bx)/2 → flag (role B takes over in phase 2)
 - Results land in `04_Evaluation/premise_test/results/`
 
 Run from `Project/`:

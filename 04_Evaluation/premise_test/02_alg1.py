@@ -1,4 +1,4 @@
-"""Step 2 (person B): Algorithm 1 of Sirolly et al. (2025) at a fixed threshold.
+"""Step 2 (algorithm; role B takes over in phase 2): Algorithm 1 of Sirolly et al. (2025) at a fixed threshold.
 
 Part I  — initial score x0_i = sum over markets m of s_im * 1{Q_im > 0}
           s_im = share of wallet i's volume traded in market m
