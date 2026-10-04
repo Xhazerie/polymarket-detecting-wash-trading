@@ -22,7 +22,7 @@ and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
 | Phase | Dates | Owner | Status |
 |---|---|---|---|
 | 0 Setup: scaffold, read paper §5.1, roles, Drive, ask TA | 30 Sep – 1 Oct | all | 🟡 scaffold done |
-| 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | done during planning, before roles were split | ✅ passed 30 Sep |
+| 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | whole group (joint work) | ✅ passed 30 Sep |
 | 📌 Submit topic + members | **5 Oct** | all | ⬜ |
 | 2 Full pipeline Nov–Dec 2024 + May–Jun 2025 | 5 – 10 Oct | A, B, C | ⬜ |
 | 3 Evaluation: θ-sensitivity · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ⬜ |
@@ -115,6 +115,7 @@ uv run python 02_alg1.py
         - lead-in coverage: 1 m 30 % → 3 m 66 % → **6 m 96 %** of Dec volume with full market history → A: extend lead-in
         - ⚠️ **Trump-inauguration market opened 1 Nov 22:45 UTC, inside the lead-in** → its 89 % flag is *not*
           a window-edge artefact → false-positive case study (θ-sensitivity + manual check)
+      - 4 Oct: `eda/eda_facts.md` — facts + numbers only (no recommendations) for the group to understand the data
       - Round 2 (10 Oct) needs per-wallet/per-trade flags saved by B (results/ is market-level only)
 - [ ] B: θ-sensitivity per market (Trump market as a false-positive case study) · synthetic injection · precision@k
       · save per-wallet flags (Algorithm 2 dropped 4 Oct — see Framing decision)
