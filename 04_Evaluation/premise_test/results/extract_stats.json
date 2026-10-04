@@ -1,0 +1,26 @@
+[
+  {
+    "window": "dec2024",
+    "fill_rows": 17213896,
+    "taker_summary_rows_dropped": 7867942,
+    "maker_rows": 9345954,
+    "unmapped_token_rows": 0,
+    "self_trades": 0,
+    "trades_kept": 9345954,
+    "target_trades": 1635178,
+    "target_share_volume": 692882130.9193311,
+    "target_markets": 2307
+  },
+  {
+    "window": "jun2025",
+    "fill_rows": 10553928,
+    "taker_summary_rows_dropped": 4359293,
+    "maker_rows": 6194635,
+    "unmapped_token_rows": 0,
+    "self_trades": 0,
+    "trades_kept": 6194635,
+    "target_trades": 1147205,
+    "target_share_volume": 389840047.8312668,
+    "target_markets": 3918
+  }
+]
