@@ -14,7 +14,7 @@ Full plan: `~/.claude/plans/project-data-mining-nested-truffle.md`
 
 ✅ **Premise test PASSED on 30 Sep** (4 days early) → submit this topic on 5 Oct.
 ✅ **EDA round 1 done on 3 Oct** (`03_Analytics/eda/`, findings → A/B in `findings.md`).
-Next: A extends the pipeline (lead-in → 6 months suggested) to full windows; B adds Algorithm 2 (market-specific θ)
+Next: A extends the pipeline (lead-in → 6 months suggested) to full windows; B runs θ-sensitivity + synthetic injection
 and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
 
 ## Timeline
@@ -25,12 +25,13 @@ and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
 | 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | done during planning, before roles were split | ✅ passed 30 Sep |
 | 📌 Submit topic + members | **5 Oct** | all | ⬜ |
 | 2 Full pipeline Nov–Dec 2024 + May–Jun 2025 | 5 – 10 Oct | A, B, C | ⬜ |
-| 3 Evaluation: vs paper Fig. 7 · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ⬜ |
+| 3 Evaluation: θ-sensitivity · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ⬜ |
 | 4 Slides (14) · report (15) · video (16) · AI log | 10 – 16 Oct | all | ⬜ |
 | 5 Buffer + Q&A prep | 17 – 18 Oct | all | ⬜ |
 | 📌 Submit Video + PPT + Report | **19 Oct** | all | ⬜ |
 
 Cut order if late: Oct-2025 window → Isolation Forest. Never cut: Algorithm 1 + evaluation.
+(Algorithm 2 dropped on 4 Oct — see the Framing decision.)
 
 ## Premise test
 
@@ -68,10 +69,17 @@ uv run python 02_alg1.py
 - ⚠️ **"Will Donald Trump be inaugurated?" is 89 % flagged** by our fixed-θ run, but the paper's
   Algorithm 2 flags *nothing* there (no θ passes its spillover test). Likely fixed θ vs
   market-specific θ (EDA 3 Oct: the market opened inside our lead-in, so the lead-in is *not* the cause) →
-  **implement Algorithm 2 in phase 2** and re-check this market. Good Q&A material either way.
+  report it as a **false-positive case study** (θ-sensitivity + manual check), not as a paper mismatch.
 - Runtime: ~15 s for both windows on 32 threads (DuckDB window functions, no Python loops).
 
 ### Decisions taken (don't silently reverse)
+- **Framing (4 Oct): our own analysis, NOT a replication of the paper.** Comparing ourselves to
+  Sirolly et al. made every difference look like a weakness. From now to the final report/slides/video:
+  cite the paper **once** as the source of Algorithm 1 (+ why we picked the two windows) and at most
+  **once** in validation ("in line with previously reported levels"). No side-by-side tables, no
+  "paper: X" annotations, no "we haven't done Algorithm 2". Fixed θ is a design choice, backed by our
+  own θ-sensitivity (0.7–0.99). **Algorithm 2 is dropped.** The Trump market = false-positive case study.
+  The paper must still be cited — dropping the citation would be plagiarism.
 - **Spec source:** paper PDF (public copy, gamblingharm.org), §5.1 Algorithm 1 and §6.
   Volume = **share** volume; buy/buy of N Yes + N No counts N, not 2N.
 - **Only maker-fill rows are trades.** Rows whose `taker` is an exchange contract
@@ -106,7 +114,8 @@ uv run python 02_alg1.py
         - volume at price < 0.02: **62.6 % vs 25.2 %**; 72,855 trades of exactly 96 shares at ~0.99 (Jun: 463)
         - lead-in coverage: 1 m 30 % → 3 m 66 % → **6 m 96 %** of Dec volume with full market history → A: extend lead-in
         - ⚠️ **Trump-inauguration market opened 1 Nov 22:45 UTC, inside the lead-in** → its 89 % flag is *not*
-          a window-edge artefact; B must check it with Algorithm 2
+          a window-edge artefact → false-positive case study (θ-sensitivity + manual check)
       - Round 2 (10 Oct) needs per-wallet/per-trade flags saved by B (results/ is market-level only)
-- [ ] B: Algorithm 2 (θ̲ = 0.8, θ̄ = 0.99, Y = 0.1, ζ = 0.001) + re-check the Trump-inauguration market
+- [ ] B: θ-sensitivity per market (Trump market as a false-positive case study) · synthetic injection · precision@k
+      · save per-wallet flags (Algorithm 2 dropped 4 Oct — see Framing decision)
 - [ ] A: extend to full Nov–Dec 2024 + May–Jun 2025 weekly series; sanity-check positions vs `user_position`
