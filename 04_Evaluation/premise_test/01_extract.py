@@ -22,7 +22,7 @@ import json
 
 import duckdb
 
-from config import EXCHANGE_CONTRACTS, INTERIM, RAW, RESULTS, WINDOWS
+from config import EXCHANGE_CONTRACTS, INTERIM, RAW, RESULTS, WINDOWS , WEEKLY_WINDOWS
 
 
 def extract(con: duckdb.DuckDBPyConnection, name: str, w: dict) -> dict:
@@ -106,7 +106,10 @@ def main() -> None:
     RESULTS.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect()
     all_stats = []
-    for name, w in WINDOWS.items():
+    # Combine the two original baseline windows with the 18 weekly windows.
+    # Each extraction writes its own Parquet file with history and target rows;
+    # in_target distinguishes the target week from the historical lead-in.
+    for name, w in (WINDOWS | WEEKLY_WINDOWS).items():
         st = extract(con, name, w)
         all_stats.append(st)
         print(json.dumps(st, indent=2, default=str))

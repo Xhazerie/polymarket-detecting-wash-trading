@@ -7,8 +7,8 @@
     "iterations": 10,
     "vol_weighted_score_x0": 0.7877,
     "vol_weighted_score_final": 0.7877,
-    "target_share_volume": 692882130.9193239,
-    "target_wash_share_volume": 428370877.3350468,
+    "target_share_volume": 692882130.9192623,
+    "target_wash_share_volume": 428370877.3350405,
     "wash_fraction_theta_0.9": 0.6182,
     "wash_fraction_by_theta": {
       "0.70": 0.7646,
@@ -26,8 +26,8 @@
     "iterations": 11,
     "vol_weighted_score_x0": 0.5848,
     "vol_weighted_score_final": 0.5848,
-    "target_share_volume": 389840047.8312679,
-    "target_wash_share_volume": 1347403.277848,
+    "target_share_volume": 389840047.83127755,
+    "target_wash_share_volume": 1347403.2778480006,
     "wash_fraction_theta_0.9": 0.0035,
     "wash_fraction_by_theta": {
       "0.70": 0.2048,
