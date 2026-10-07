@@ -18,12 +18,14 @@ Updated: 7 October 2026
 - Across the 18 weekly target periods: **29,380,522 trades**, **0 unmapped-token rows**, and **0 self-trades** reported by extraction. Historical lead-in rows overlap across datasets and should not be summed as unique trades.
 - Baseline Algorithm 1 results at threshold 0.9: **61.82%** of December 1–7, 2024 share volume flagged and **0.35%** of June 1–7, 2025 share volume flagged.
 - EDA notebook: all 21 code cells executed, with no recorded error outputs.
+- Weekly integrity validation: all 18 datasets passed `04_Evaluation/premise_test/03_validate.py`. Checks cover duplicate event IDs within each dataset, required fields, UTC date boundaries, target flags, finite positive share amounts, nonnegative USDC amounts, position-change magnitudes, lowercase addresses, self-trades, exchange-summary rows, and agreement with saved extraction counts and volume. Detailed results: `04_Evaluation/premise_test/results/weekly_validation.json`.
+- Sampled position consistency: all 18 windows passed `04_validate_positions.py`, comparing cleaned maker/taker exposure against raw maker orders (including taker-summary rows). Checked 1,800 pair/window cases (523 distinct wallet-market pairs) and 13,613 block checkpoints, with zero differences. Details and limitations: `02_Preprocessing/POSITION_VALIDATION.md`; machine-readable results: `04_Evaluation/premise_test/results/position_validation.json`.
 
 These checks confirm generated outputs and recorded counts; they do not establish that reconstructed positions or wash-trading flags are correct.
 
 ## Remaining
 
-- Validate reconstructed positions against compatible `user_position` records, accounting for timestamps and position definitions.
+- Historical balance validation remains unresolved: the published `user_position` is an April 2026 state snapshot without historical timestamps, so it cannot be directly compared with 2024/2025 window endpoints. A compatible historical reference or full lifecycle reconstruction is required. The sampled raw-fill consistency check above is complete, but does not replace this validation.
 - Test longer lead-in periods and measure their effect on positions and detection results.
 - Have Algorithm 1 consume the weekly configurations and save weekly results and per-wallet scores/flags for evaluation and EDA round 2. The current algorithm still uses the two baseline windows.
 - Prepare preprocessing slides and report content using the saved extraction counts and validation results.
