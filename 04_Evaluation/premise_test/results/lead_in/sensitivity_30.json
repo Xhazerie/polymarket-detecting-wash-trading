@@ -1,0 +1,109 @@
+{
+  "days": [
+    30
+  ],
+  "runs": [
+    {
+      "window": "dec2024_lead030",
+      "period": "dec2024",
+      "lead_days": 30,
+      "months": [
+        "2024-11",
+        "2024-12"
+      ],
+      "lead_start": "2024-11-01",
+      "target_start": "2024-12-01",
+      "target_end": "2024-12-08",
+      "extraction": {
+        "window": "dec2024_lead030",
+        "fill_rows": 17213896,
+        "taker_summary_rows_dropped": 7867942,
+        "maker_rows": 9345954,
+        "unmapped_token_rows": 0,
+        "self_trades": 0,
+        "trades_kept": 9345954,
+        "target_trades": 1635178,
+        "target_share_volume": 692882130.9194173,
+        "target_markets": 2307
+      },
+      "algorithm": {
+        "window": "dec2024_lead030",
+        "wallets": 334362,
+        "wallet_market_pairs": 2527718,
+        "share_of_wallet_markets_with_closure": 0.5279,
+        "iterations": 10,
+        "vol_weighted_score_x0": 0.7877,
+        "vol_weighted_score_final": 0.7877,
+        "target_share_volume": 692882130.9194791,
+        "target_wash_share_volume": 428370877.33499706,
+        "wash_fraction_theta_0.9": 0.6182,
+        "wash_fraction_by_theta": {
+          "0.70": 0.7646,
+          "0.80": 0.7087,
+          "0.90": 0.6182,
+          "0.95": 0.5981,
+          "0.99": 0.5505
+        }
+      },
+      "parameters": {
+        "theta": 0.9,
+        "closure": 0.005,
+        "tolerance": 1e-05
+      }
+    },
+    {
+      "window": "jun2025_lead030",
+      "period": "jun2025",
+      "lead_days": 30,
+      "months": [
+        "2025-05",
+        "2025-06"
+      ],
+      "lead_start": "2025-05-02",
+      "target_start": "2025-06-01",
+      "target_end": "2025-06-08",
+      "extraction": {
+        "window": "jun2025_lead030",
+        "fill_rows": 10326197,
+        "taker_summary_rows_dropped": 4266066,
+        "maker_rows": 6060131,
+        "unmapped_token_rows": 0,
+        "self_trades": 0,
+        "trades_kept": 6060131,
+        "target_trades": 1147205,
+        "target_share_volume": 389840047.8312685,
+        "target_markets": 3918
+      },
+      "algorithm": {
+        "window": "jun2025_lead030",
+        "wallets": 292715,
+        "wallet_market_pairs": 1802514,
+        "share_of_wallet_markets_with_closure": 0.3826,
+        "iterations": 11,
+        "vol_weighted_score_x0": 0.5802,
+        "vol_weighted_score_final": 0.5802,
+        "target_share_volume": 389840047.83126956,
+        "target_wash_share_volume": 1338261.8287040018,
+        "wash_fraction_theta_0.9": 0.0034,
+        "wash_fraction_by_theta": {
+          "0.70": 0.2003,
+          "0.80": 0.0679,
+          "0.90": 0.0034,
+          "0.95": 0.0016,
+          "0.99": 0.0012
+        }
+      },
+      "parameters": {
+        "theta": 0.9,
+        "closure": 0.005,
+        "tolerance": 1e-05
+      }
+    }
+  ],
+  "comparisons": [],
+  "limitations": [
+    "Changing history changes both closure evidence and the counterparty network; this is lead-in sensitivity, not a positions-only experiment.",
+    "Longer history does not supply ground truth or guarantee complete starting balances.",
+    "A 30-day June history starts May 2; the original baseline starts May 1."
+  ]
+}

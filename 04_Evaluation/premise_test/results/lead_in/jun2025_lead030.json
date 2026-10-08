@@ -1,0 +1,55 @@
+{
+  "window": "jun2025_lead030",
+  "period": "jun2025",
+  "lead_days": 30,
+  "months": [
+    "2025-05",
+    "2025-06"
+  ],
+  "lead_start": "2025-05-02",
+  "target_start": "2025-06-01",
+  "target_end": "2025-06-08",
+  "extraction": {
+    "window": "jun2025_lead030",
+    "fill_rows": 10326197,
+    "taker_summary_rows_dropped": 4266066,
+    "maker_rows": 6060131,
+    "unmapped_token_rows": 0,
+    "self_trades": 0,
+    "trades_kept": 6060131,
+    "target_trades": 1147205,
+    "target_share_volume": 389840047.8312645,
+    "target_markets": 3918
+  },
+  "algorithm": {
+    "window": "jun2025_lead030",
+    "wallets": 292715,
+    "wallet_market_pairs": 1802514,
+    "share_of_wallet_markets_with_closure": 0.3826,
+    "iterations": 11,
+    "vol_weighted_score_x0": 0.5802,
+    "vol_weighted_score_final": 0.5802,
+    "target_share_volume": 389840047.8312722,
+    "target_wash_share_volume": 1338261.8287040007,
+    "wash_fraction_theta_0.9": 0.0034,
+    "wash_fraction_by_theta": {
+      "0.70": 0.2003,
+      "0.80": 0.0679,
+      "0.90": 0.0034,
+      "0.95": 0.0016,
+      "0.99": 0.0012
+    }
+  },
+  "parameters": {
+    "theta": 0.9,
+    "closure": 0.005,
+    "tolerance": 1e-05
+  },
+  "metadata_history_coverage": {
+    "target_markets": 3918,
+    "markets_without_start_date": 20,
+    "volume_fraction_without_start_date": 0.0005094661537697245,
+    "volume_fraction_with_market_start_inside_history": 0.4713394669633496,
+    "limitation": "Reported market start dates are a coverage proxy, not proof of complete on-chain history."
+  }
+}

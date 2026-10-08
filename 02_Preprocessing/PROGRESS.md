@@ -1,6 +1,6 @@
 # Preprocessing progress
 
-Updated: 7 October 2026
+Updated: 8 October 2026
 
 ## Completed
 
@@ -20,13 +20,14 @@ Updated: 7 October 2026
 - EDA notebook: all 21 code cells executed, with no recorded error outputs.
 - Weekly integrity validation: all 18 datasets passed `04_Evaluation/premise_test/03_validate.py`. Checks cover duplicate event IDs within each dataset, required fields, UTC date boundaries, target flags, finite positive share amounts, nonnegative USDC amounts, position-change magnitudes, lowercase addresses, self-trades, exchange-summary rows, and agreement with saved extraction counts and volume. Detailed results: `04_Evaluation/premise_test/results/weekly_validation.json`.
 - Sampled position consistency: all 18 windows passed `04_validate_positions.py`, comparing cleaned maker/taker exposure against raw maker orders (including taker-summary rows). Checked 1,800 pair/window cases (523 distinct wallet-market pairs) and 13,613 block checkpoints, with zero differences. Details and limitations: `02_Preprocessing/POSITION_VALIDATION.md`; machine-readable results: `04_Evaluation/premise_test/results/position_validation.json`.
+- Lead-in sensitivity complete in `05_leadin_sensitivity.py`: exact 30/90/180-day histories for the two baseline target weeks. All seven additional months downloaded and all six runs completed. December flagged-volume fractions: 61.82%, 61.82%, 61.64%; June: 0.34%, 0.30%, 0.38%. Six pairwise comparisons confirmed identical target trades and wallets. The period-level contrast persists, but wallet scores/threshold classifications change materially. Results, coverage, and limits: `02_Preprocessing/LEAD_IN_SENSITIVITY.md`; combined JSON: `04_Evaluation/premise_test/results/lead_in/sensitivity_30_90_180.json`. The June exact-30-day start is May 2, unlike the May 1 calendar-month baseline.
 
 These checks confirm generated outputs and recorded counts; they do not establish that reconstructed positions or wash-trading flags are correct.
 
 ## Remaining
 
 - Historical balance validation remains unresolved: the published `user_position` is an April 2026 state snapshot without historical timestamps, so it cannot be directly compared with 2024/2025 window endpoints. A compatible historical reference or full lifecycle reconstruction is required. The sampled raw-fill consistency check above is complete, but does not replace this validation.
-- Test longer lead-in periods and measure their effect on positions and detection results.
+- Choose and document the history policy for all 18 weekly windows using the completed lead-in sensitivity results. A 180-day policy increases market-history coverage but does not guarantee more accurate wallet flags; applying it to the earliest November week also needs May 2024 data.
 - Have Algorithm 1 consume the weekly configurations and save weekly results and per-wallet scores/flags for evaluation and EDA round 2. The current algorithm still uses the two baseline windows.
 - Prepare preprocessing slides and report content using the saved extraction counts and validation results.
 
