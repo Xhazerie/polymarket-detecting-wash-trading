@@ -89,8 +89,12 @@ A 180-day history is a reasonable working choice for these two target weeks if
 the priority is broader market-history coverage: coverage rises to 96.2% and
 87.9%. This is not a claim that 180-day scores are more accurate. Keep the shorter
 runs as sensitivity evidence and prioritize wallets whose flags change for manual
-evaluation. Applying 180 days to all weekly windows is a separate pipeline change;
-the earliest November window would additionally need May 2024 fills.
+evaluation. The user returned to **30 days for the main weekly analysis on
+October 8**. All 18 original weekly datasets and reports have been restored.
+The attempted 180-day weekly extraction was stopped and archived in
+`data/interim/weekly_lead180_interrupted/`; those files were not validated.
+The completed six baseline sensitivity experiments above remain valid and
+available as supporting evidence.
 
 ## Verification
 

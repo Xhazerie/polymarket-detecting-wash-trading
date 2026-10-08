@@ -5,6 +5,7 @@ does our re-implementation of Algorithm 1 (Sirolly et al., 2025) flag clearly
 more wash volume in a week the paper calls "peak" than in a week it calls "quiet"?
 """
 
+from datetime import date, timedelta
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[2]
@@ -48,11 +49,13 @@ GO_PEAK_MIN = 0.30
 GO_QUIET_MAX = 0.10
 
 
-from datetime import date, timedelta
+# The selected weekly policy is 30 days. The 90/180-day experiments remain
+# sensitivity evidence; a longer history is not necessarily more accurate.
+WEEKLY_LEAD_DAYS = 30
 
 
 def make_weekly_windows(start: date, end: date) -> dict:
-    """Build consecutive target weeks within [start, end), each with 30 days of history.
+    """Build consecutive target weeks within [start, end), with the selected history.
 
     The returned settings have the same fields as WINDOWS, so extract() can
     process weekly datasets without changing its trade-cleaning logic.
@@ -63,8 +66,8 @@ def make_weekly_windows(start: date, end: date) -> dict:
         # Stop at the analysis-period boundary; the final week may be shorter.
         target_end = min(start + timedelta(days=7), end)
         # Include history for position reconstruction, but do not count it as
-        # target-week volume. This is 30 days, not a calendar month.
-        lead_start = start - timedelta(days=30)
+        # target-week volume. This is an exact day count, not calendar months.
+        lead_start = start - timedelta(days=WEEKLY_LEAD_DAYS)
 
         # Raw fills are stored in monthly files. Include every month touched
         # by [lead_start, target_end); extract() filters rows to the exact dates.
@@ -87,7 +90,7 @@ def make_weekly_windows(start: date, end: date) -> dict:
             "target_start": start.isoformat(),
             "target_end": target_end.isoformat(),
         }
-        # Target weeks do not overlap; their 30-day historical lead-ins do.
+        # Target weeks do not overlap; their historical lead-ins do.
         start = target_end
 
     return windows
@@ -95,7 +98,8 @@ def make_weekly_windows(start: date, end: date) -> dict:
 
 # Keep the two baseline WINDOWS separate for existing Algorithm 1 and EDA runs.
 # These periods generate nine windows each (18 total), anchored on Nov 1 / May 1
-# rather than calendar Mondays. October / April files supply the early history.
+# rather than calendar Mondays. October / April files supply the early history
+# for the selected 30-day policy.
 WEEKLY_WINDOWS = {
     **make_weekly_windows(date(2024, 11, 1), date(2025, 1, 1)),
     **make_weekly_windows(date(2025, 5, 1), date(2025, 7, 1)),

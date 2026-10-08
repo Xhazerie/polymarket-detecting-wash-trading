@@ -21,7 +21,7 @@
       "metrics": {
         "rows": 9234918,
         "target_rows": 2441910,
-        "target_shares": 1513472282.2385597,
+        "target_shares": 1513472282.238565,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -53,7 +53,7 @@
       "metrics": {
         "rows": 9930515,
         "target_rows": 1653044,
-        "target_shares": 609063242.0281571,
+        "target_shares": 609063242.028188,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -85,7 +85,7 @@
       "metrics": {
         "rows": 10344243,
         "target_rows": 1658145,
-        "target_shares": 632425894.4621215,
+        "target_shares": 632425894.4621334,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -117,7 +117,7 @@
       "metrics": {
         "rows": 10594849,
         "target_rows": 1526577,
-        "target_shares": 508446463.89041907,
+        "target_shares": 508446463.8904193,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -149,7 +149,7 @@
       "metrics": {
         "rows": 9997627,
         "target_rows": 1607920,
-        "target_shares": 736823134.3693811,
+        "target_shares": 736823134.3694161,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -181,7 +181,7 @@
       "metrics": {
         "rows": 8583638,
         "target_rows": 1630516,
-        "target_shares": 566067518.2986734,
+        "target_shares": 566067518.2986972,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -213,7 +213,7 @@
       "metrics": {
         "rows": 8907206,
         "target_rows": 2040680,
-        "target_shares": 687756312.2983478,
+        "target_shares": 687756312.2983617,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -245,7 +245,7 @@
       "metrics": {
         "rows": 11052503,
         "target_rows": 3786968,
-        "target_shares": 797663315.4547278,
+        "target_shares": 797663315.4547063,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -277,7 +277,7 @@
       "metrics": {
         "rows": 12257725,
         "target_rows": 2765525,
-        "target_shares": 660344755.0470929,
+        "target_shares": 660344755.0470996,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -309,7 +309,7 @@
       "metrics": {
         "rows": 5323913,
         "target_rows": 1055073,
-        "target_shares": 353737079.07633984,
+        "target_shares": 353737079.0763339,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -341,7 +341,7 @@
       "metrics": {
         "rows": 5693132,
         "target_rows": 1291223,
-        "target_shares": 322505697.965927,
+        "target_shares": 322505697.96592826,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -373,7 +373,7 @@
       "metrics": {
         "rows": 5960075,
         "target_rows": 1245243,
-        "target_shares": 317362542.51651466,
+        "target_shares": 317362542.51651263,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -405,7 +405,7 @@
       "metrics": {
         "rows": 6074818,
         "target_rows": 1002969,
-        "target_shares": 225050824.666557,
+        "target_shares": 225050824.66655353,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -437,7 +437,7 @@
       "metrics": {
         "rows": 6168795,
         "target_rows": 1161023,
-        "target_shares": 410669602.4546305,
+        "target_shares": 410669602.4546369,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -469,7 +469,7 @@
       "metrics": {
         "rows": 6086238,
         "target_rows": 999164,
-        "target_shares": 215047421.6297031,
+        "target_shares": 215047421.62970418,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -501,7 +501,7 @@
       "metrics": {
         "rows": 5904911,
         "target_rows": 1145021,
-        "target_shares": 266296969.9654122,
+        "target_shares": 266296969.965418,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -533,7 +533,7 @@
       "metrics": {
         "rows": 6086780,
         "target_rows": 1462249,
-        "target_shares": 348019795.693018,
+        "target_shares": 348019795.6930191,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,
@@ -565,7 +565,7 @@
       "metrics": {
         "rows": 5950926,
         "target_rows": 907272,
-        "target_shares": 208869975.24308905,
+        "target_shares": 208869975.2430936,
         "duplicate_events": 0,
         "null_rows": 0,
         "outside_window": 0,

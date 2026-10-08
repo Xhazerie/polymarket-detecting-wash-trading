@@ -21,6 +21,7 @@
 | โฟลเดอร์ | เนื้อหา |
 |---|---|
 | `01_Raw_Data/` | แหล่งข้อมูลและวิธีดาวน์โหลด (ตัวข้อมูลไม่ได้อยู่ใน repo) |
+| `02_Preprocessing/` | รายงาน validation, lead-in sensitivity และนโยบายประวัติย้อนหลัง 180 วัน |
 | `03_Analytics/eda/` | `eda_round1.ipynb` (มีคำอธิบายทุก cell) · `eda_facts.md` (ข้อเท็จจริงจากข้อมูล) · `findings.md` (ข้อค้นพบสำหรับทีม) · `figures/` · `eda_stats.json` |
 | `04_Evaluation/premise_test/` | `config.py` (หน้าต่างเวลา, พารามิเตอร์) · `01_extract.py` (fills → เทรด) · `02_alg1.py` (Algorithm 1) · `results/` |
 | `05_AI_Usage_Log/` | บันทึกการใช้ AI |
@@ -34,19 +35,27 @@
 ```bash
 uv sync                                   # ติดตั้ง dependency จาก uv.lock
 
-# 1) ดาวน์โหลดข้อมูลดิบ (~3.7 GB) ลง data/raw/ ตามคำสั่งใน 01_Raw_Data/README.md
+# 1) ดาวน์โหลดข้อมูลดิบ (~5.3 GB) ลง data/raw/ ตามคำสั่งใน 01_Raw_Data/README.md
 
-# 2) premise test (~15 วินาทีบนเครื่อง 32 เธรด)
+# 2) สร้าง baseline และ 18 weekly datasets (lead-in 30 วัน)
 cd 04_Evaluation/premise_test
 uv run python 01_extract.py              # -> data/interim/<window>_trades.parquet
+uv run python 03_validate.py             # -> results/weekly_validation.json
+uv run python 04_validate_positions.py   # -> results/position_validation.json
+
+# 3) premise test บนสอง baseline windows เดิม
 uv run python 02_alg1.py                 # -> results/alg1_results.json
 cd ../..
 
-# 3) EDA (< 1 นาที)
+# 4) EDA รอบแรกบนสอง baseline windows
 uv run jupyter nbconvert --to notebook --execute --inplace 03_Analytics/eda/eda_round1.ipynb
 ```
 
 `data/` และไฟล์ `*.parquet` ถูก gitignore ไว้ เพราะดาวน์โหลดใหม่ได้และมีขนาดใหญ่
+
+`WEEKLY_LEAD_DAYS = 30` กำหนดประวัติย้อนหลังสำหรับ weekly datasets ทั้ง 18 ชุด
+ส่วน baseline `WINDOWS` ยังใช้ช่วงประวัติเดิม ดูเหตุผลและผลทดลองที่
+[`02_Preprocessing/LEAD_IN_SENSITIVITY.md`](02_Preprocessing/LEAD_IN_SENSITIVITY.md)
 
 ## ข้อมูลและอ้างอิง
 

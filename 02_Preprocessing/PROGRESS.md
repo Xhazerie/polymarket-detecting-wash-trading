@@ -8,7 +8,7 @@ Updated: 8 October 2026
 - Downloaded October–December 2024 and April–June 2025 fills, plus condition and market metadata.
 - Added `make_weekly_windows()` and `WEEKLY_WINDOWS` in `04_Evaluation/premise_test/config.py`.
 - Updated `01_extract.py` to extract the original two baseline windows and 18 weekly windows covering November–December 2024 and May–June 2025.
-- Each weekly window includes a 30-day lead-in and an `in_target` flag identifying trades in the target week. Weeks start on November 1 or May 1 and advance by seven days; the final window of each period is shorter.
+- Weekly history policy: **30 days** (`WEEKLY_LEAD_DAYS` in `config.py`), restored at the user's request on October 8. All 18 original datasets and reports have been restored. The stopped 180-day extraction is archived separately in `data/interim/weekly_lead180_interrupted/` and was not validated. Weeks start on November 1 or May 1 and advance by seven days; the final window of each period is shorter. `in_target` identifies trades in the target week.
 - Reused the existing preprocessing: remove exchange-summary rows, lowercase addresses, convert amounts from six-decimal units, map tokens to markets and outcomes, and calculate maker position changes.
 
 ## Verified outputs
@@ -27,7 +27,7 @@ These checks confirm generated outputs and recorded counts; they do not establis
 ## Remaining
 
 - Historical balance validation remains unresolved: the published `user_position` is an April 2026 state snapshot without historical timestamps, so it cannot be directly compared with 2024/2025 window endpoints. A compatible historical reference or full lifecycle reconstruction is required. The sampled raw-fill consistency check above is complete, but does not replace this validation.
-- Choose and document the history policy for all 18 weekly windows using the completed lead-in sensitivity results. A 180-day policy increases market-history coverage but does not guarantee more accurate wallet flags; applying it to the earliest November week also needs May 2024 data.
+- Use the selected 30-day weekly datasets for the main analysis, retaining the completed 90/180-day baseline experiments as sensitivity evidence. Report the unknown starting-position limitation.
 - Have Algorithm 1 consume the weekly configurations and save weekly results and per-wallet scores/flags for evaluation and EDA round 2. The current algorithm still uses the two baseline windows.
 - Prepare preprocessing slides and report content using the saved extraction counts and validation results.
 

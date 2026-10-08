@@ -88,7 +88,10 @@ uv run python 02_alg1.py
   taker's side never has to be rebuilt.
 - **Closure = existence test only** (Q > 0): any reversal, or a terminal contraction
   down to ≤ 0.5% of the running max. Checked on 6 hand-made cases (all pass).
-- **Lead-in of one month** before each target week, for positions and scores.
+- **Weekly analysis uses 30 days of lead-in**, restored at the user's request on
+  8 Oct. The 30/90/180-day sensitivity experiment remains supporting evidence
+  (`02_Preprocessing/LEAD_IN_SENSITIVITY.md`).
+  The original premise-test windows retain their calendar-month history.
   Positions opened before the lead-in are unknown → documented limitation.
 - Raw files are downloaded once to `data/raw/` (gitignored); timestamps are strings,
   so querying over HTTP can't skip row groups by date.
