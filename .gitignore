@@ -1,0 +1,6 @@
+# Raw and intermediate data are re-downloadable from Hugging Face (see 01_Raw_Data/README.md)
+data/
+*.parquet
+.venv/
+__pycache__/
+.ipynb_checkpoints/
