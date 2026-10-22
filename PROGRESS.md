@@ -122,4 +122,17 @@ uv run python 02_alg1.py
       - Round 2 (10 Oct) needs per-wallet/per-trade flags saved by B (results/ is market-level only)
 - [ ] B: θ-sensitivity per market (Trump market as a false-positive case study) · synthetic injection · precision@k
       · save per-wallet flags (Algorithm 2 dropped 4 Oct — see Framing decision)
+      - ✅ 22 Oct: **synthetic injection + precision@k built** — `04_Evaluation/premise_test/06_synthetic_injection.py`
+        plants known wash rings (at a range of wash intensities) into the quiet Jun-2025 window and reports
+        recall@θ, precision@k and Average Precision against that ground truth. `02_alg1.py` refactored to a
+        shared `score_wallets()` so the premise test and this evaluation score identically. ⚠️ Still to **run on
+        the real data** (needs `jun2025_trades.parquet` from `01_extract.py`); logic verified on a synthetic smoke test.
+      - ✅ 22 Oct: **per-wallet flags saved** — `07_wallet_flags.py` writes `results/wallet_flags/<window>.parquet`
+        (wallet, score x, x0, flagged, target_vol, target_wash_vol, in_wash_trade, n_markets, n_counterparties),
+        so EDA round 2 can compare flagged vs unflagged wallets. ⚠️ pending run on real data.
+      - ✅ 22 Oct: **θ-sensitivity per market + Trump case study built** — `08_market_theta.py` writes
+        `results/market_theta/<window>.parquet` (flagged share per market across θ = 0.7…0.99, plus a
+        `robustness` = wash(0.99)/wash(0.90) and a `robust_wash` flag), `case_study.json` (the Trump
+        market vs the most robust markets, with a false-positive verdict), and `trump_case_study.png`.
+        Genuine wash (sports long-shots) stays flagged as θ rises; a false positive collapses. ⚠️ pending run on real data.
 - [ ] A: extend to full Nov–Dec 2024 + May–Jun 2025 weekly series; sanity-check positions vs `user_position`

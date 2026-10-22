@@ -4,3 +4,6 @@ data/
 .venv/
 __pycache__/
 .ipynb_checkpoints/
+
+# Assignment brief/template (kept locally, not distributed in the repo)
+69_1_G_Assignment_#2_template-1.pdf

@@ -76,8 +76,15 @@ def closure_flags(con: duckdb.DuckDBPyConnection, trades: str) -> None:
     """)
 
 
-def run_window(con: duckdb.DuckDBPyConnection, name: str) -> dict:
-    trades = str(INTERIM / f"{name}_trades.parquet")
+def score_wallets(con: duckdb.DuckDBPyConnection, trades: str) -> dict:
+    """Run Algorithm 1 over a trades table and return the per-wallet score vector.
+
+    This is the one place the score is computed, so run_window (the premise test)
+    and 06_synthetic_injection (the precision@k evaluation) share identical logic.
+    Returns the wallet array, the final scores x and the initial scores x0, the
+    weighted degree, and the iteration count. `wm` is left in place for callers
+    that want the per-wallet/market closure table.
+    """
     closure_flags(con, trades)
 
     # Wallet index
@@ -111,6 +118,14 @@ def run_window(con: duckdb.DuckDBPyConnection, name: str) -> dict:
         if rel < TOL:
             break
 
+    return {"wallets": wallets, "idx": idx, "n": n, "x0": x0, "x": x, "deg": deg, "iterations": k}
+
+
+def run_window(con: duckdb.DuckDBPyConnection, name: str) -> dict:
+    trades = str(INTERIM / f"{name}_trades.parquet")
+    s = score_wallets(con, trades)
+    wallets, x, x0, deg, n = s["wallets"], s["x"], s["x0"], s["deg"], s["n"]
+
     # Property from the paper (Prop. 2): the volume-weighted mean score is conserved.
     vw_x0, vw_x = float(deg @ x0 / deg.sum()), float(deg @ x / deg.sum())
 
@@ -141,7 +156,7 @@ def run_window(con: duckdb.DuckDBPyConnection, name: str) -> dict:
         "wallets": n,
         "wallet_market_pairs": closures[1],
         "share_of_wallet_markets_with_closure": round(closures[0], 4),
-        "iterations": k,
+        "iterations": s["iterations"],
         "vol_weighted_score_x0": round(vw_x0, 4),
         "vol_weighted_score_final": round(vw_x, 4),
         "target_share_volume": res[0],

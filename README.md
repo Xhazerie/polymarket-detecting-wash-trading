@@ -45,6 +45,9 @@ uv run python 04_validate_positions.py   # -> results/position_validation.json
 
 # 3) premise test บนสอง baseline windows เดิม
 uv run python 02_alg1.py                 # -> results/alg1_results.json
+uv run python 06_synthetic_injection.py  # -> results/synthetic_injection.json (recall@θ, precision@k, AP)
+uv run python 07_wallet_flags.py         # -> results/wallet_flags/<window>.parquet (ธงรายกระเป๋า สำหรับ EDA รอบ 2)
+uv run python 08_market_theta.py         # -> results/market_theta/ (θ-sensitivity รายตลาด + เคส Trump false positive)
 cd ../..
 
 # 4) EDA รอบแรกบนสอง baseline windows
