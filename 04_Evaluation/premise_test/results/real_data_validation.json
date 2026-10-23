@@ -1,0 +1,26 @@
+{
+  "dec2024": {
+    "wallets": 334362,
+    "target_active_wallets": 104186,
+    "target_active_flagged_wallets": 30535,
+    "target_active_flagged_percent": 29.30816040542875,
+    "markets": 2307,
+    "robust_flag_markets": 132,
+    "wallet_flags_and_volume_checks": "passed",
+    "market_threshold_monotonicity_and_baseline_checks": "passed"
+  },
+  "jun2025": {
+    "wallets": 295526,
+    "target_active_wallets": 87130,
+    "target_active_flagged_wallets": 6403,
+    "target_active_flagged_percent": 7.3487891656145985,
+    "markets": 3918,
+    "robust_flag_markets": 11,
+    "wallet_flags_and_volume_checks": "passed",
+    "market_threshold_monotonicity_and_baseline_checks": "passed"
+  },
+  "notebook": {
+    "executed_code_cells": 11,
+    "error_outputs": 0
+  }
+}
