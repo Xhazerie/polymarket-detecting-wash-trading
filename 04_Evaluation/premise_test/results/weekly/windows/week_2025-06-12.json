@@ -1,0 +1,91 @@
+{
+  "window": "week_2025-06-12",
+  "period": "May-Jun 2025",
+  "lead_start": "2025-05-13",
+  "target_start": "2025-06-12",
+  "target_end_exclusive": "2025-06-19",
+  "target_days": 7,
+  "lead_days": 30,
+  "target_trades": 1145021,
+  "target_markets": 4439,
+  "active_wallets": 76710,
+  "active_flagged_wallets": 4554,
+  "active_flagged_wallet_fraction": 0.05936644505279624,
+  "share_volume": 266296969.96539515,
+  "usdc_volume": 108794497.39005484,
+  "share_volume_per_day": 38042424.280770734,
+  "flagged_share_volume": 2195790.91829,
+  "flagged_usdc_volume": 49404.48381599997,
+  "flagged_share_fraction": 0.008245647401002667,
+  "flagged_usdc_fraction": 0.0004541082959267033,
+  "theta_fractions": {
+    "0.70": 0.1953332492628659,
+    "0.80": 0.05992240341942733,
+    "0.90": 0.008245647401002667,
+    "0.95": 0.007465166379494693,
+    "0.99": 0.0059797591020539645
+  },
+  "wallets_including_leadin": 279590,
+  "iterations": 11,
+  "relative_change": 6.249885440111333e-06,
+  "converged": true,
+  "weighted_score_x0": 0.5893842453126895,
+  "weighted_score_final": 0.5893842453126897,
+  "robust_flag_markets": 2,
+  "profile": [
+    {
+      "flagged": false,
+      "wallets": 72156,
+      "endpoint_volume": 525851440.40828294,
+      "top1_share": 0.19962048226184187,
+      "top2_share": 0.30067988451420236,
+      "median_partners": 2.0,
+      "median_markets": 2.0
+    },
+    {
+      "flagged": true,
+      "wallets": 4554,
+      "endpoint_volume": 6742499.522500999,
+      "top1_share": 0.34972107674430297,
+      "top2_share": 0.6085285812500985,
+      "median_partners": 4.0,
+      "median_markets": 1.0
+    }
+  ],
+  "categories": [
+    {
+      "category": "Crypto",
+      "share_volume": 50876712.68202178,
+      "flagged_share_volume": 56945.191143000004,
+      "flagged_lowprice_share_volume": 72.0
+    },
+    {
+      "category": "Economy",
+      "share_volume": 58841537.74512217,
+      "flagged_share_volume": 5120.0,
+      "flagged_lowprice_share_volume": 903.0
+    },
+    {
+      "category": "Other",
+      "share_volume": 35138790.23141623,
+      "flagged_share_volume": 1864101.6771470003,
+      "flagged_lowprice_share_volume": 1852669.8300000003
+    },
+    {
+      "category": "Politics",
+      "share_volume": 62678007.92958748,
+      "flagged_share_volume": 70350.42,
+      "flagged_lowprice_share_volume": 61836.15
+    },
+    {
+      "category": "Sports",
+      "share_volume": 58761921.37724757,
+      "flagged_share_volume": 199273.63000000006,
+      "flagged_lowprice_share_volume": 174662.1700000001
+    }
+  ],
+  "flagged_wallet_median_partner_flagged_fraction": 0.5,
+  "flagged_endpoint_volume_mostly_with_flagged": 3998758.1127719996,
+  "flagged_endpoint_volume": 6742499.522500999,
+  "validation": "passed"
+}

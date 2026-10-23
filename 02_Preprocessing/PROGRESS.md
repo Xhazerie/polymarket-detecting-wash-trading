@@ -28,7 +28,7 @@ These checks confirm generated outputs and recorded counts; they do not establis
 
 - Historical balance validation remains unresolved: the published `user_position` is an April 2026 state snapshot without historical timestamps, so it cannot be directly compared with 2024/2025 window endpoints. A compatible historical reference or full lifecycle reconstruction is required. The sampled raw-fill consistency check above is complete, but does not replace this validation.
 - Use the selected 30-day weekly datasets for the main analysis, retaining the completed 90/180-day baseline experiments as sensitivity evidence. Report the unknown starting-position limitation.
-- Have Algorithm 1 consume the weekly configurations and save weekly results and per-wallet scores/flags for evaluation and EDA round 2. The current algorithm still uses the two baseline windows.
+- ✅ 23 Oct: `09_weekly_analysis.py` now consumes all 18 weekly configurations, reuses one score pass per window for wallet flags and market θ-curves, and saves validated outputs in `results/weekly/`. Weekly EDA, four charts and findings are in `03_Analytics/weekly/`.
 - Prepare preprocessing slides and report content using the saved extraction counts and validation results.
 
 The newer decisions in the root `PROGRESS.md` take precedence over the September 30 group-plan PDF: Algorithm 2 was dropped; planned evaluation includes threshold sensitivity, synthetic injection, and precision@k.

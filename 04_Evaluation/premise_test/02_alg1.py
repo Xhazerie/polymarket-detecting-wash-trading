@@ -118,7 +118,8 @@ def score_wallets(con: duckdb.DuckDBPyConnection, trades: str) -> dict:
         if rel < TOL:
             break
 
-    return {"wallets": wallets, "idx": idx, "n": n, "x0": x0, "x": x, "deg": deg, "iterations": k}
+    return {"wallets": wallets, "idx": idx, "n": n, "x0": x0, "x": x, "deg": deg,
+            "iterations": k, "converged": bool(rel < TOL), "relative_change": float(rel)}
 
 
 def run_window(con: duckdb.DuckDBPyConnection, name: str) -> dict:

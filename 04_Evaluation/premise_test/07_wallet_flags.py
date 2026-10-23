@@ -39,9 +39,9 @@ alg1 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(alg1)
 
 
-def wallet_flags(con: duckdb.DuckDBPyConnection, name: str, out_dir: Path) -> dict:
+def wallet_flags(con: duckdb.DuckDBPyConnection, name: str, out_dir: Path, *, scores: dict | None = None) -> dict:
     trades = str(INTERIM / f"{name}_trades.parquet")
-    s = alg1.score_wallets(con, trades)
+    s = scores if scores is not None else alg1.score_wallets(con, trades)
     con.register("score", pd.DataFrame({"wallet": s["wallets"], "x": s["x"], "x0": s["x0"]}))
 
     # Per-wallet target-week features. Each target trade contributes to both its

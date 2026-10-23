@@ -44,9 +44,9 @@ MARKETS = str(RAW / "market_data.parquet")
 ROBUST_MIN_FRAC = 0.5                    # wash(0.99) >= this share of wash(0.90)
 
 
-def market_theta(con: duckdb.DuckDBPyConnection, name: str, w: dict) -> pd.DataFrame:
+def market_theta(con: duckdb.DuckDBPyConnection, name: str, w: dict, *, scores: dict | None = None) -> pd.DataFrame:
     trades = str(alg1.INTERIM / f"{name}_trades.parquet")
-    s = alg1.score_wallets(con, trades)
+    s = scores if scores is not None else alg1.score_wallets(con, trades)
     con.register("score", pd.DataFrame({"wallet": s["wallets"], "x": s["x"]}))
 
     frac_cols = ",\n".join(

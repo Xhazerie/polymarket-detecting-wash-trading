@@ -8,12 +8,14 @@
 
 ## สถานะ
 
+อ่านสรุปข้อมูล วิธีทำ ผลวิเคราะห์/evaluation ทั้งหมด ข้อจำกัด และงานที่เหลือได้ที่ **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)**
+
 | งาน | ผล |
 |---|---|
 | Premise test (Algorithm 1, θ = 0.9) | ✅ ธ.ค. 2024 ถูกติดธง **61.8%** · มิ.ย. 2025 **0.35%** |
 | EDA รอบ 1 (สองสัปดาห์เป้าหมาย) | ✅ ดู [`03_Analytics/eda/`](03_Analytics/eda/) |
 | Evaluation + EDA รอบ 2 บนสอง baseline weeks | ✅ รันข้อมูลจริง 23 ต.ค. — [ผลและข้อจำกัด](03_Analytics/eda/evaluation_findings.md) |
-| Algorithm 1 + EDA ครบ 18 weekly windows | ⬜ ข้อมูลพร้อมแล้ว เหลือวิเคราะห์รายสัปดาห์ |
+| Algorithm 1 + EDA ครบ 18 weekly windows | ✅ 29.38 M trades — flagged volume **49.00% vs 2.50%** ดู [ผลรายสัปดาห์](03_Analytics/weekly/findings.md) |
 
 ไทม์ไลน์ บทบาท และการตัดสินใจทั้งหมดอยู่ใน [`PROGRESS.md`](PROGRESS.md)
 
@@ -24,6 +26,7 @@
 | `01_Raw_Data/` | แหล่งข้อมูลและวิธีดาวน์โหลด (ตัวข้อมูลไม่ได้อยู่ใน repo) |
 | `02_Preprocessing/` | รายงาน validation, lead-in sensitivity และนโยบายประวัติย้อนหลัง 180 วัน |
 | `03_Analytics/eda/` | `eda_round1.ipynb` (มีคำอธิบายทุก cell) · `eda_facts.md` (ข้อเท็จจริงจากข้อมูล) · `findings.md` (ข้อค้นพบสำหรับทีม) · `figures/` · `eda_stats.json` |
+| `03_Analytics/weekly/` | ผลครบ 18 สัปดาห์ · `findings.md` · CSV/JSON รายวัน/สัปดาห์/เดือน/ช่วง · กราฟ 4 รูป · `make_figures.py` |
 | `04_Evaluation/premise_test/` | `config.py` (หน้าต่างเวลา, พารามิเตอร์) · `01_extract.py` (fills → เทรด) · `02_alg1.py` (Algorithm 1) · `results/` |
 | `05_AI_Usage_Log/` | บันทึกการใช้ AI |
 
@@ -53,6 +56,10 @@ cd ../..
 
 # 4) EDA รอบแรกบนสอง baseline windows
 uv run jupyter nbconvert --to notebook --execute --inplace 03_Analytics/eda/eda_round1.ipynb
+
+# 5) วิเคราะห์ครบ 18 สัปดาห์ (ผลแยกจาก baseline ใน results/weekly/)
+uv run python 04_Evaluation/premise_test/09_weekly_analysis.py
+uv run python 03_Analytics/weekly/make_figures.py
 ```
 
 `data/` และไฟล์ `*.parquet` ถูก gitignore ไว้ เพราะดาวน์โหลดใหม่ได้และมีขนาดใหญ่

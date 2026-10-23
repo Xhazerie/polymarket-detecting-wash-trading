@@ -12,6 +12,18 @@ Full plan: `~/.claude/plans/project-data-mining-nested-truffle.md`
 
 ## Current stage
 
+**Weekly update 23 Oct 2026:** all 18 windows have been scored and analysed with the selected
+30-day histories. The 29,380,522 target trades cover 122 non-overlapping days. At θ=0.90,
+flagged share volume is **49.00% for Nov–Dec 2024 vs 2.50% for May–Jun 2025**; monthly
+fractions are 37.69%, 61.09%, 4.37%, and 0.64%. The period contrast persists across
+θ=0.70–0.99. Per-wallet flags, per-market curves, daily stats, concentration profiles,
+keyword categories and adjacent-window label transitions are saved. All 18 windows pass
+score/volume/date/threshold checks and the known-answer integration test passes.
+See `03_Analytics/weekly/findings.md`, its four figures and CSVs, and
+`04_Evaluation/premise_test/results/weekly/validation.json`. Final-window June flagged volume
+is concentrated in the Hamilton market; category labels remain heuristic. This supersedes
+the remaining-weekly-analysis notes in the earlier baseline update below.
+
 **Update 23 Oct 2026:** evaluation steps 06/07/08 and EDA round 2 have now run on the real
 two-baseline datasets. See `03_Analytics/eda/evaluation_findings.md` for results and limitations.
 Synthetic recall at θ=0.9 is 48/144 (33.33%); AP=0.0046 and precision@144/288=0 under the
@@ -27,8 +39,10 @@ and final deliverables remain outstanding. Historical balance ground truth remai
 
 ✅ **Premise test PASSED on 30 Sep** (4 days early) → submit this topic on 5 Oct.
 ✅ **EDA round 1 done on 3 Oct** (`03_Analytics/eda/`, findings → A/B in `findings.md`).
-Next: A extends the pipeline (lead-in → 6 months suggested) to full windows; B runs θ-sensitivity + synthetic injection
-and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
+✅ **Weekly Algorithm 1 + θ-sensitivity + EDA complete on 23 Oct**, with 30-day lead-ins.
+Next: final report, slides and video; discuss synthetic-evaluation limitations, threshold-sensitive
+case studies, keyword categorisation and unknown starting positions. Historical balance ground truth
+is still unavailable; sampled raw-fill consistency is already complete.
 
 ## Timeline
 
@@ -37,8 +51,8 @@ and saves per-wallet flags; C does EDA round 2 (flagged vs unflagged) by 10 Oct.
 | 0 Setup: scaffold, read paper §5.1, roles, Drive, ask TA | 30 Sep – 1 Oct | all | 🟡 scaffold done |
 | 1 Premise test (Dec-2024 week vs Jun-2025 week) | 1 – 4 Oct | whole group (joint work) | ✅ passed 30 Sep |
 | 📌 Submit topic + members | **5 Oct** | all | ⬜ |
-| 2 Full pipeline Nov–Dec 2024 + May–Jun 2025 | 5 – 10 Oct | A, B, C | ⬜ |
-| 3 Evaluation: θ-sensitivity · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ⬜ |
+| 2 Full pipeline Nov–Dec 2024 + May–Jun 2025 | 5 – 10 Oct | A, B, C | ✅ analysis complete 23 Oct |
+| 3 Evaluation: θ-sensitivity · synthetic injection · precision@k | 8 – 12 Oct | B (+C) | ✅ real-data runs complete 23 Oct |
 | 4 Slides (14) · report (15) · video (16) · AI log | 10 – 16 Oct | all | ⬜ |
 | 5 Buffer + Q&A prep | 17 – 18 Oct | all | ⬜ |
 | 📌 Submit Video + PPT + Report | **19 Oct** | all | ⬜ |
@@ -119,7 +133,7 @@ uv run python 02_alg1.py
 
 ## Remaining
 - [ ] Ask TA: report length/language, video length, AI log, live presentation in week 14?
-- [ ] C: EDA round 1 on the two weeks in `data/interim/` → findings to A/B by **4 Oct**;
+- [x] C: EDA round 1 on the two weeks in `data/interim/` → findings to A/B by **4 Oct**;
       round 2 on the full range + flagged vs unflagged wallets by **10 Oct** (backup topic no longer needed)
       - ✅ 3 Oct: **EDA round 1 complete** — `03_Analytics/eda/eda_round1.ipynb` (60 cells, every code cell has
         Thai explanation before + interpretation after; runs clean in < 1 min), 6 figures in `eda/figures/`,
@@ -133,7 +147,7 @@ uv run python 02_alg1.py
           a window-edge artefact → false-positive case study (θ-sensitivity + manual check)
       - 4 Oct: `eda/eda_facts.md` — facts + numbers only (no recommendations) for the group to understand the data
       - Round 2 (10 Oct) needs per-wallet/per-trade flags saved by B (results/ is market-level only)
-- [ ] B: θ-sensitivity per market (Trump market as a false-positive case study) · synthetic injection · precision@k
+- [x] B: θ-sensitivity per market (Trump market as a candidate for false-positive review) · synthetic injection · precision@k
       · save per-wallet flags (Algorithm 2 dropped 4 Oct — see Framing decision)
       - ✅ 22 Oct: **synthetic injection + precision@k built** — `04_Evaluation/premise_test/06_synthetic_injection.py`
         plants known wash rings (at a range of wash intensities) into the quiet Jun-2025 window and reports
@@ -148,4 +162,6 @@ uv run python 02_alg1.py
         `robustness` = wash(0.99)/wash(0.90) and a `robust_wash` flag), `case_study.json` (the Trump
         market vs the most robust markets, with a false-positive verdict), and `trump_case_study.png`.
         Genuine wash (sports long-shots) stays flagged as θ rises; a false positive collapses. ⚠️ pending run on real data.
-- [ ] A: extend to full Nov–Dec 2024 + May–Jun 2025 weekly series; sanity-check positions vs `user_position`
+- [x] A: full Nov–Dec 2024 + May–Jun 2025 weekly extraction, sampled raw-fill consistency and downstream weekly analysis complete.
+      Historical balance comparison with `user_position` remains unavailable because its snapshot is from a different period;
+      report this limitation (see `02_Preprocessing/POSITION_VALIDATION.md`).

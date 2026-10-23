@@ -1,0 +1,17 @@
+{
+  "windows": 18,
+  "passed_windows": 18,
+  "target_trades": 29380522,
+  "target_days": 122,
+  "lead_days": 30,
+  "all_scores_converged": true,
+  "checks": [
+    "finite bounded wallet scores",
+    "weighted score conservation",
+    "extraction counts, volume and target dates",
+    "unique wallet IDs and score/flag agreement",
+    "wallet endpoint volume / 2 equals trade volume",
+    "monotone market theta curves agree with direct trade aggregation",
+    "122 non-overlapping target dates; period/category/daily totals agree"
+  ]
+}
