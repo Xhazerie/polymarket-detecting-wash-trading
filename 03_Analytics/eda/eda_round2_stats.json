@@ -1,0 +1,32 @@
+{
+  "dec2024": {
+    "n_wallets": 334362,
+    "n_flagged": 77906,
+    "pct_wallets_flagged": 23.299896519341313,
+    "pct_target_volume_wash": 61.82,
+    "pct_target_volume_score_ge_theta": 65.49009358034648,
+    "flagged_top1_share": 0.47353173997119363,
+    "flagged_top2_share": 0.6481298804785662,
+    "unflagged_top1_share": 0.18302894776383832,
+    "unflagged_top2_share": 0.28029238143564383,
+    "pct_wash_volume_sports": 68.17208368492904,
+    "pct_wash_volume_price_lt_0.02": 77.33413928528168,
+    "median_flagged_vol_share_with_flagged": 0.519094000189653,
+    "pct_flagged_volume_mostly_with_flagged": 90.9797338182896
+  },
+  "jun2025": {
+    "n_wallets": 295526,
+    "n_flagged": 25086,
+    "pct_wallets_flagged": 8.488593220224278,
+    "pct_target_volume_wash": 0.35000000000000003,
+    "pct_target_volume_score_ge_theta": 0.8248513773075261,
+    "flagged_top1_share": 0.3371018435113862,
+    "flagged_top2_share": 0.5944306423487691,
+    "unflagged_top1_share": 0.18717802976867376,
+    "unflagged_top2_share": 0.2889249398427031,
+    "pct_wash_volume_sports": 19.2863476193291,
+    "pct_wash_volume_price_lt_0.02": 62.61270715085577,
+    "median_flagged_vol_share_with_flagged": 0.4117647058823529,
+    "pct_flagged_volume_mostly_with_flagged": 21.112388215977905
+  }
+}

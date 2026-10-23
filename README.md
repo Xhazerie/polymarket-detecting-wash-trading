@@ -12,7 +12,8 @@
 |---|---|
 | Premise test (Algorithm 1, θ = 0.9) | ✅ ธ.ค. 2024 ถูกติดธง **61.8%** · มิ.ย. 2025 **0.35%** |
 | EDA รอบ 1 (สองสัปดาห์เป้าหมาย) | ✅ ดู [`03_Analytics/eda/`](03_Analytics/eda/) |
-| Pipeline ช่วงเต็ม · evaluation (θ-sensitivity, synthetic injection, precision@k) · EDA รอบ 2 | ⬜ กำลังทำ |
+| Evaluation + EDA รอบ 2 บนสอง baseline weeks | ✅ รันข้อมูลจริง 23 ต.ค. — [ผลและข้อจำกัด](03_Analytics/eda/evaluation_findings.md) |
+| Algorithm 1 + EDA ครบ 18 weekly windows | ⬜ ข้อมูลพร้อมแล้ว เหลือวิเคราะห์รายสัปดาห์ |
 
 ไทม์ไลน์ บทบาท และการตัดสินใจทั้งหมดอยู่ใน [`PROGRESS.md`](PROGRESS.md)
 

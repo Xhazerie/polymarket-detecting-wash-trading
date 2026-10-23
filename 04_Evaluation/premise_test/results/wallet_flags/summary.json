@@ -1,0 +1,22 @@
+[
+  {
+    "window": "dec2024",
+    "wallets": 334362,
+    "flagged_wallets": 77906,
+    "flagged_wallet_share": 0.233,
+    "target_share_volume": 692882130.9193183,
+    "target_wash_share_volume": 428370877.33501667,
+    "wash_volume_share": 0.6182,
+    "output": "results/wallet_flags/dec2024.parquet"
+  },
+  {
+    "window": "jun2025",
+    "wallets": 295526,
+    "flagged_wallets": 25086,
+    "flagged_wallet_share": 0.0849,
+    "target_share_volume": 389840047.83126605,
+    "target_wash_share_volume": 1347403.2778479992,
+    "wash_volume_share": 0.0035,
+    "output": "results/wallet_flags/jun2025.parquet"
+  }
+]

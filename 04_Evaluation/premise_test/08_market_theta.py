@@ -6,12 +6,10 @@ wash, or a false positive?* The headline example is the "Will Donald Trump be
 inaugurated?" market, which our fixed-theta run flags ~89%, yet the paper's
 Algorithm 2 flags nothing there.
 
-This step answers it with evidence instead of assertion. For every market it
-computes the flagged share of target-week volume across a grid of thresholds. A
-genuine-wash market (sports long-shots) stays flagged as theta rises toward 0.99,
-because its wallets score ~1. A false positive is flagged only near theta = 0.9 and
-collapses by 0.99, because its "wash" rests on wallets sitting just over the line.
-The ratio wash(0.99) / wash(0.90) is that robustness in one number.
+For every market this computes the flagged share of target-week volume across a
+grid of thresholds. The ratio wash(0.99) / wash(0.90) describes robustness to a
+stricter threshold. A falling flag is a candidate for manual review; neither a
+falling nor a robust flag establishes ground truth about wash trading.
 
 Outputs (per window):
   results/market_theta/<window>.parquet   full per-market theta curves
@@ -103,7 +101,7 @@ def build_case_study(df: pd.DataFrame) -> dict:
     def rows(frame):
         return json.loads(frame[curve_cols].to_json(orient="records", date_format="iso"))
 
-    # The most robust large markets (genuine wash) for side-by-side contrast.
+    # Large markets with robust flags, for descriptive comparison.
     robust = df[df["robust_wash"]].nlargest(5, "target_vol")
     verdict = {}
     if len(trump):
@@ -116,10 +114,11 @@ def build_case_study(df: pd.DataFrame) -> dict:
             "robust_wash": bool(t["robust_wash"]),
             "opened_inside_window_leadin": bool(t["opened_in_window"]),
             "reading": (
-                "flagged at the fixed theta but the flag is NOT robust: it collapses as "
-                "theta rises, unlike genuine-wash markets -> treat as a false-positive case study"
+                "flagged at the fixed theta but sensitive to stricter thresholds; "
+                "candidate for manual false-positive review, not confirmed ground truth"
                 if not bool(t["robust_wash"]) else
-                "flag is robust across theta, so this is not a clear false positive"
+                "flag is robust across theta; threshold sensitivity alone cannot establish "
+                "whether this market contains wash trading or a false positive"
             ),
         }
     return {"thetas": THETAS, "trump_market": rows(trump), "robust_markets": rows(robust),

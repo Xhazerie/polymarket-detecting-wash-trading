@@ -12,6 +12,19 @@ Full plan: `~/.claude/plans/project-data-mining-nested-truffle.md`
 
 ## Current stage
 
+**Update 23 Oct 2026:** evaluation steps 06/07/08 and EDA round 2 have now run on the real
+two-baseline datasets. See `03_Analytics/eda/evaluation_findings.md` for results and limitations.
+Synthetic recall at θ=0.9 is 48/144 (33.33%); AP=0.0046 and precision@144/288=0 under the
+unlabelled-real-wallet-as-negative convention. Trump flagged volume falls from 89.12% to
+20.88% as θ rises from 0.90 to 0.99; this suggests threshold sensitivity, not confirmed false
+positives. Wallet outputs agree with baseline volume, market curves pass monotonicity checks,
+and EDA round 2 executes all 11 code cells without errors. Outputs: `results/synthetic_injection.json`,
+`results/wallet_flags/`, `results/market_theta/`, `results/real_data_validation.json`,
+`eda_round2_stats.json`, and four `figures/r2_*.png` charts. Parquet outputs remain gitignored.
+The pending-real-data notes dated 22 Oct below are superseded by this run.
+The 18 weekly datasets are already extracted and validated; their Algorithm 1 + EDA analysis
+and final deliverables remain outstanding. Historical balance ground truth remains unresolved.
+
 ✅ **Premise test PASSED on 30 Sep** (4 days early) → submit this topic on 5 Oct.
 ✅ **EDA round 1 done on 3 Oct** (`03_Analytics/eda/`, findings → A/B in `findings.md`).
 Next: A extends the pipeline (lead-in → 6 months suggested) to full windows; B runs θ-sensitivity + synthetic injection

@@ -1,0 +1,67 @@
+{
+  "base_window": "jun2025",
+  "theta": 0.9,
+  "design": {
+    "rings_per_level": 8,
+    "ring_size": 3,
+    "round_trips": 3,
+    "intensity_levels": [
+      1.0,
+      0.95,
+      0.9,
+      0.85,
+      0.8,
+      0.7
+    ],
+    "wash_shares_per_leg": 1000.0
+  },
+  "wallets_total": 295790,
+  "wash_wallets_injected": 144,
+  "recall_at_theta_overall": 0.3333,
+  "average_precision": 0.0046,
+  "precision_at_k": {
+    "144": 0.0,
+    "288": 0.0,
+    "720": 0.0333
+  },
+  "real_wallets_scoring_above_lowest_injected": 96237,
+  "recall_at_theta_by_intensity": {
+    "1.00": {
+      "wallets": 24,
+      "recall_at_theta": 1.0,
+      "median_score": 1.0,
+      "min_score": 1.0
+    },
+    "0.95": {
+      "wallets": 24,
+      "recall_at_theta": 1.0,
+      "median_score": 0.9268,
+      "min_score": 0.9268
+    },
+    "0.90": {
+      "wallets": 24,
+      "recall_at_theta": 0.0,
+      "median_score": 0.8571,
+      "min_score": 0.8571
+    },
+    "0.85": {
+      "wallets": 24,
+      "recall_at_theta": 0.0,
+      "median_score": 0.7907,
+      "min_score": 0.7907
+    },
+    "0.80": {
+      "wallets": 24,
+      "recall_at_theta": 0.0,
+      "median_score": 0.7273,
+      "min_score": 0.7273
+    },
+    "0.70": {
+      "wallets": 24,
+      "recall_at_theta": 0.0,
+      "median_score": 0.6087,
+      "min_score": 0.6087
+    }
+  },
+  "note": "recall_at_theta_by_intensity should fall as intensity drops past theta; precision is conservative because unlabelled real wash in the base window counts as a false positive."
+}
